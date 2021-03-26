@@ -5,14 +5,14 @@ c = conn.cursor()
 
 
 def loginSQL(pseudo, password):
-    c.execute(f'SELECT iduser FROM user WHERE user.username = {pseudo} and user.password = {password}')
+    c.execute(f'SELECT user_id FROM user WHERE user.username = {pseudo} and user.password = {password}')
     if c.fetchall() == []:return None
     L = c.fetchall()
     conn.close()
     return L[0]
 
 def signupSQL(pseudo, password):
-    c.execute('SELECT iduser FROM user WHERE user.username = pseudo')
+    c.execute('SELECT user_id FROM user WHERE user.username = pseudo')
     if c.fetchall() != []:
         return 'None'
     c.execute('INSERT INTO user (username, password) (?, ?)', (pseudo, password))
